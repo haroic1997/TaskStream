@@ -15,11 +15,14 @@ public class Main {
     public static void main(String[] args) {
         DataManager dm = new DataManager("./data/data.txt");
         ArrayList<Task> tasksData = dm.loadData();
-
+        printData(tasksData);
         System.out.println("Printing deadlines");
         printDeadlines(tasksData);
 
         System.out.println("Total number of deadlines: " + countDeadlines(tasksData));
+//        printDataUsingStreams(tasksData);
+        printDeadlineUsingStreams(tasksData);
+        System.out.println("Total number of deadlines: "+ countDeadlineUsingStreams(tasksData));
 
     }
 
@@ -37,6 +40,12 @@ public class Main {
         for (Task t : tasksData) {
             System.out.println(t);
         }
+    }
+
+    public static void printDataUsingStreams(ArrayList<Task> tasksData){
+        System.out.println("Printing Data using Streams");
+        tasksData.stream()
+                .forEach(System.out::println);
     }
 
     public static void printDeadlines(ArrayList<Task> tasksData) {
